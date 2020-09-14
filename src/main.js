@@ -1,8 +1,26 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Vuex from "vuex";
+import App from "./App.vue";
+import Home from "./Home";
+import Details from "./Details";
+import makeStore from "./CountriesStore";
 
-Vue.config.productionTip = false
+Vue.use(VueRouter);
+Vue.use(Vuex);
+
+const routes = [
+  { path: "/", component: Home },
+  { path: "/country/:countryid", component: Details },
+];
+
+const router = new VueRouter({
+  mode: "history",
+  routes,
+});
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  router,
+  render: (h) => h(App),
+  store: makeStore(),
+}).$mount("#app");
