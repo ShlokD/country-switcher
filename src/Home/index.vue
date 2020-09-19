@@ -44,6 +44,9 @@ export default {
   mounted() {
     this.$store.commit("getCountries");
   },
+  created() {
+    document.title = "Duniya Mein Kahan?";
+  },
   components: {
     CountryCard,
   },

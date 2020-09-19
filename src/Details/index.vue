@@ -85,6 +85,9 @@ export default {
   mounted() {
     checkAndRoute(this.$route, this.$store);
   },
+  created() {
+    document.title = "Details";
+  },
 };
 </script>
 

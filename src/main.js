@@ -10,8 +10,12 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/country/:countrycode", component: Details },
+  { path: "/", component: Home, meta: { title: "Duniya Mein Kahan?" } },
+  {
+    path: "/country/:countrycode",
+    component: Details,
+    meta: { title: "Country Details" },
+  },
 ];
 
 const router = new VueRouter({
