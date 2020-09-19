@@ -11,7 +11,7 @@ Vue.use(Vuex);
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/country/:countryid", component: Details },
+  { path: "/country/:countrycode", component: Details },
 ];
 
 const router = new VueRouter({
@@ -19,8 +19,10 @@ const router = new VueRouter({
   routes,
 });
 
+const store = makeStore();
+
 new Vue({
   router,
   render: (h) => h(App),
-  store: makeStore(),
+  store,
 }).$mount("#app");

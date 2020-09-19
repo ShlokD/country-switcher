@@ -1,40 +1,43 @@
 <template>
-  <div id="app" :class="className">
-    <header class="flex justify-evenly">
-      <p class="text-4xl font-bold">Duniya Mein Kahan?</p>
-      <button v-on:click="setMode">{{ text }}</button>
+  <div
+    id="app"
+    :class="`${ui.className} flex flex-col p-6 h-full overflow-auto`"
+  >
+    <header class="flex items-center justify-evenly shadow p-6">
+      <router-link to="/" class="text-4xl font-bold"
+        >Duniya Mein Kahan?</router-link
+      >
+      <button class="border p-4 m-4 text-2xl" v-on:click="setMode">
+        {{ ui.text }}
+      </button>
     </header>
     <router-view />
   </div>
 </template>
 
 <script>
-const DARK_MODE = "DARK_MODE";
-const LIGHT_MODE = "LIGHT_MODE";
+import { LIGHT_MODE } from "./common/enums";
+
 export default {
   name: "App",
-  data() {
-    return {
-      className: "light",
-      mode: LIGHT_MODE,
-      text: "Dark Mode",
-    };
+  computed: {
+    ui: function() {
+      return {
+        className: this.$store.state.mode === LIGHT_MODE ? "light" : "dark",
+        text:
+          this.$store.state.mode === LIGHT_MODE ? "Dark Mode" : "Light Mode",
+      };
+    },
   },
   methods: {
     setMode() {
-      this.className = this.mode === LIGHT_MODE ? "dark" : "light";
-      this.mode = this.mode === LIGHT_MODE ? DARK_MODE : LIGHT_MODE;
-      this.text = this.mode === LIGHT_MODE ? "Dark Mode" : "Light Mode";
+      this.$store.commit("toggleMode");
     },
   },
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
-@import url("https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css");
-
 :root {
   --dark-blue: hsl(209, 23%, 22%);
   --very-dark-blue: hsl(207, 26%, 17%);
@@ -50,17 +53,12 @@ export default {
 
 #app {
   font-family: Nunito Sans, Helvetica, Arial, sans-serif;
-  height: auto;
-  width: 100%;
-  padding: 1.5em;
-  min-height: 100vh;
 }
 
 html,
 body {
-  height: auto;
-  width: 100%;
-  min-height: 100vh;
+  margin: 0;
+  height: 100%;
 }
 
 .dark {

@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col items-center justify-center elem">
+  <router-link
+    :to="url"
+    class="flex flex-col items-center justify-center elem m-4 p-4 w-auto cursor-pointer"
+  >
     <img
       class="h-48 rounded-lg"
       height="auto"
@@ -21,11 +24,16 @@
         <p class="inline pl-2">{{ country.capital }}</p>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: ["country"],
+  computed: {
+    url: function() {
+      return `/country/${this.$props.country.alpha3Code}`;
+    },
+  },
 };
 </script>

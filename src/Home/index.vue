@@ -1,20 +1,30 @@
 <template>
   <div>
-    <input
-      class="text-2xl p-6 m-2 w-full"
-      placeholder="Search for a country..."
-      v-on:keydown="getCountryByName"
-    />
-    <select class="m-4 p-4" v-on:change="getCountryByRegion">
-      <option value="" selected disabled>Filter By Region</option>
-      <option value="africa">Africa</option>
-      <option value="america">America</option>
-      <option value="asia">Asia</option>
-      <option value="europe">Europe</option>
-      <option value="oceania">Oceania</option>
-    </select>
-    <div class="p-4 m-4" v-for="country in countries" :key="country.name">
-      <country-card :country="country"></country-card>
+    <div class="flex lg:flex-row flex-col justify-around p-6">
+      <input
+        class="p-4 m-2 shadow w-5/6 elem"
+        placeholder="Search for a country..."
+        v-on:keydown="getCountryByName"
+      />
+      <select
+        class="m-4 p-4 shadow w-1/6 elem"
+        v-on:change="getCountryByRegion"
+      >
+        <option value="" selected disabled>Filter By Region</option>
+        <option value="africa">Africa</option>
+        <option value="americas">Americas</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
+      </select>
+    </div>
+    <p v-if="error.length > 0">{{ error }}</p>
+    <div v-else class="flex lg:flex-row lg:flex-wrap flex-col">
+      <country-card
+        v-for="country in countries"
+        :key="country.name"
+        :country="country"
+      ></country-card>
     </div>
   </div>
 </template>
@@ -25,7 +35,10 @@ import CountryCard from "./modules/CountryCard";
 export default {
   computed: {
     countries: function() {
-      return this.$store.state.countries;
+      return Object.values(this.$store.state.countries);
+    },
+    error: function() {
+      return this.$store.state.error;
     },
   },
   mounted() {
@@ -49,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-* {
+:root {
   font-size: 14px;
 }
 </style>
