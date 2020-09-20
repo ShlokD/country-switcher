@@ -7,6 +7,7 @@
     <router-link to="/" class="px-8 py-4 text-lg elem shadow">Back</router-link>
     <div class="flex lg:flex-row flex-col items-center justify-center m-6 p-6">
       <img
+        :alt="`Flag for ${country.name}`"
         class="lg:h-1/2 lg:w-1/2 rounded-lg"
         height="auto"
         width="auto"

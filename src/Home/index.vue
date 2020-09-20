@@ -2,12 +2,15 @@
   <div>
     <div class="flex lg:flex-row flex-col justify-around p-6">
       <input
-        class="p-4 m-2 shadow w-5/6 elem"
+        aria-label="Search for a country"
+        id="country-input"
+        class="p-4 m-2 shadow lg:w-5/6 elem"
         placeholder="Search for a country..."
         v-on:keydown="getCountryByName"
       />
       <select
-        class="m-4 p-4 shadow w-1/6 elem"
+        aria-label="Select a region"
+        class="m-4 p-4 shadow elem"
         v-on:change="getCountryByRegion"
       >
         <option value="" selected disabled>Filter By Region</option>

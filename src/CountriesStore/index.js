@@ -1,7 +1,7 @@
 import Vuex from "vuex";
 import { DARK_MODE, LIGHT_MODE } from "../common/enums";
 
-const BASE_URL = "http://restcountries.eu/rest/v2";
+const BASE_URL = "//restcountries.eu/rest/v2";
 
 const transformCountry = (countryMap, country) => {
   countryMap[`${country.alpha3Code.toUpperCase()}`] = {

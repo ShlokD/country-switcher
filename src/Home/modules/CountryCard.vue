@@ -4,6 +4,7 @@
     class="flex flex-col items-center justify-center elem m-4 p-4 w-auto cursor-pointer"
   >
     <img
+      :alt="`Flag for ${country.name}`"
       class="h-48 rounded-lg"
       height="auto"
       width="auto"
