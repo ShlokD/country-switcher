@@ -4,7 +4,7 @@
     :class="`${ui.className} flex flex-col p-6 h-full overflow-auto`"
   >
     <header class="flex items-center justify-evenly shadow p-6">
-      <router-link to="/" class="text-4xl font-bold"
+      <router-link to="/" class="text-4xl font-bold elem"
         >Duniya Mein Kahan?</router-link
       >
       <button class="border p-4 m-4 text-2xl" v-on:click="setMode">
